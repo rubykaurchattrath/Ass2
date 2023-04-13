@@ -2,34 +2,51 @@
 #define POLYNOMIAL_H
 
 #include <vector>
+#include <iostream>
+
+using namespace std;
 
 class Polynomial {
 
 friend ostream &operator<<(ostream &out, const Polynomial& other);
-private:
-    std::vector<double> coeffs;  // coefficients of the polynomial
-    
-public:
-    // constructor that takes a vector of coefficients
-    Polynomial(const std::vector<double>& c);
-    
-    
-    // addition operator
-    Polynomial operator+(const Polynomial& other) const;
-    
-    // subtraction operator
-    Polynomial operator-(const Polynomial& other) const;
-    
-    // multiplication operator
-    Polynomial operator*(const Polynomial& other) const;
-    
-  // check equality
-  bool operator==(const Polynomial& other) const;
+friend istream &operator>>(istream &in, const Polynomial& other);
 
-  // check if not equal
-  bool operator!=(const Polynomial& other) const;
-    // print function
+private:
+    vector<double> coeffs;  // coefficients of the polynomial
+    Polynomial result;
+
+    // set both sizes of both vectors equal to eachother by adding empty elements
+    void Polynomial setVectorSize(const vector<double>& c, const Polynomial& other);
+
+public:
+    // constructor that takes vector of coeffs
+   Polynomial(const Polynomial& other);
+
+   // no arg constructor
+   Polynomial();
+
+    // arithmetic operators
+    Polynomial operator+(const Polynomial& other) const;
+    Polynomial operator+=(const Polynomial& other);
+    Polynomial operator-(const Polynomial& other) const;
+    Polynomial operator-=(const Polynomial& other);
+    Polynomial operator*(const Polynomial& other) const;
+    Polynomial operator*=(const Polynomial& other);
+    Polynomial operator/(const Polynomial& other) const;
+    Polynomial operator/=(const Polynomial& other);
+    
+    // equality and not equal operators
+    bool operator==(const Polynomial& other) const;
+    bool operator!=(const Polynomial& other) const;
    
+    // comparison operators
+    bool operator>(const Polynomial& other) const;
+    bool operator<(const Polynomial& other) const;
+    bool operator>=(const Polynomial& other) const;
+    bool operator<=(const Polynomial& other) const;
+
+    // print function
+    void print() const; ????
 };
 
 #endif
