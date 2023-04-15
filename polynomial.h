@@ -12,11 +12,11 @@ friend ostream &operator<<(ostream &out, const Polynomial& other);
 friend istream &operator>>(istream &in, const Polynomial& other);
 
 private:
-    vector<double> coeffs;  // coefficients of the polynomial
-    Polynomial result;
+    // coefficients of the polynomial
+    vector<double> coeffs; 
 
-    // set both sizes of both vectors equal to eachother by adding empty elements
-    void Polynomial setVectorSize(const vector<double>& c, const Polynomial& other);
+    // remove extra zeros
+    void reduce();
 
 public:
     // constructor that takes vector of coeffs
@@ -45,8 +45,6 @@ public:
     bool operator>=(const Polynomial& other) const;
     bool operator<=(const Polynomial& other) const;
 
-    // print function
-    void print() const; ????
 };
 
 #endif
